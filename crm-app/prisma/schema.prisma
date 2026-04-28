@@ -1,0 +1,59 @@
+// This is the 12xDesk CRM Prisma schema
+// Database: SQLite (local-first, zero-config)
+// Models: Lead, Property, Interaction
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Lead (Inquiry) ───────────────────────────────────────────────
+model Lead {
+  id            String        @id @default(cuid())
+  name          String
+  phone         String        // Indian mobile: +91XXXXXXXXXX
+  source        String        // Facebook, WhatsApp, Walk-in, 99acres, MagicBricks, Housing.com, Referral
+  budget        String?       // e.g. "80L - 1.2Cr"
+  requirement   String?       // e.g. "2BHK in Thane West"
+  pipelineStage String        @default("NEW_LEAD") @map("pipeline_stage")
+  // Stages: NEW_LEAD, REQUIREMENT_GATHERED, SITE_VISIT_SCHEDULED, SITE_VISIT_DONE, TOKEN_NEGOTIATION, CLOSED_WON, CLOSED_LOST
+  notes         String?
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+
+  interactions  Interaction[]
+
+  @@map("leads")
+}
+
+// ─── Property (Inventory) ─────────────────────────────────────────
+model Property {
+  id                  String   @id @default(cuid())
+  projectName         String   @map("project_name")
+  developer           String
+  location            String
+  configuration       String   // 1BHK, 2BHK, 3BHK, etc.
+  possessionTimeline  String?  @map("possession_timeline") // e.g. "Q4 2027"
+  basePrice           String?  @map("base_price") // e.g. "55L onwards"
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  @@map("properties")
+}
+
+// ─── Interaction (Activity Log) ───────────────────────────────────
+model Interaction {
+  id        String   @id @default(cuid())
+  leadId    String   @map("lead_id")
+  type      String   // WHATSAPP, CALL, SITE_VISIT
+  notes     String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@map("interactions")
+}

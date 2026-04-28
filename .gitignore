@@ -1,0 +1,36 @@
+# dependencies
+node_modules/
+crm-app/node_modules/
+
+# next.js
+crm-app/.next/
+crm-app/out/
+
+# production
+crm-app/build/
+
+# env files
+.env*
+crm-app/.env*
+
+# database
+*.db
+*.db-journal
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# typescript
+*.tsbuildinfo
+crm-app/next-env.d.ts
+
+# prisma
+crm-app/src/generated/prisma/
+
+# temp/error files
+seed_error.txt
