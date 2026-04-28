@@ -42,14 +42,14 @@
 |    | — Tag system                         | ⬜     | 2BHK, Under Construction, Possession Q4 2027, Area      |
 |    | — Add/Edit property                  | ⬜     | Form with all Property model fields                      |
 |    | — Search & filter                    | ⬜     | By type, price range, location, status                   |
-| 9  | Site Visit Pipeline (Kanban)         | ⬜     | Full drag-and-drop Kanban board                          |
-|    | — Column: New Lead                   | ⬜     | Hardcoded column                                         |
-|    | — Column: Requirement Gathered       | ⬜     | Hardcoded column                                         |
-|    | — Column: Site Visit Scheduled       | ⬜     | Hardcoded column                                         |
-|    | — Column: Site Visit Done            | ⬜     | Hardcoded column                                         |
-|    | — Column: Token/Negotiation          | ⬜     | Hardcoded column                                         |
-|    | — Column: Closed                     | ⬜     | Hardcoded column                                         |
-|    | — Drag-and-drop lead cards           | ⬜     | Move leads between stages                                |
+| 9  | Site Visit Pipeline (Kanban)         | ✅     | Full drag-and-drop Kanban board                          |
+|    | — Column: New Lead                   | ✅     | Hardcoded column                                         |
+|    | — Column: Requirement Gathered       | ✅     | Hardcoded column                                         |
+|    | — Column: Site Visit Scheduled       | ✅     | Hardcoded column                                         |
+|    | — Column: Site Visit Done            | ✅     | Hardcoded column                                         |
+|    | — Column: Token/Negotiation          | ✅     | Hardcoded column                                         |
+|    | — Column: Closed                     | ✅     | Hardcoded column                                         |
+|    | — Drag-and-drop lead cards           | ✅     | Move leads between stages                                |
 | 10 | WhatsApp Brochure Engine             | ⬜     | Select property → auto-generate message → WhatsApp link  |
 |    | — Property selector                  | ⬜     | Dropdown/search to pick a property                       |
 |    | — Message template builder           | ⬜     | Auto-fill project name, price, location, possession      |

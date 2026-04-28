@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full dark`}>
       <body className="min-h-full bg-background text-foreground antialiased">
-        <TooltipProvider delayDuration={300}>
+        <TooltipProvider delay={300}>
           {/* Desktop Sidebar */}
           <DesktopSidebar />
 
