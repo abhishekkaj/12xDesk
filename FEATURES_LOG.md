@@ -68,7 +68,10 @@
 |    | — Payload validation                 | ✅     | Ensure name and phone are present                        |
 |    | — Prisma database sync               | ✅     | Instant lead creation in SQLite                          |
 | 13 | Authentication                       | ⬜     | Phone OTP or simple login                                |
-| 14 | Dashboard analytics                  | ⬜     | Lead count, conversion rate, pipeline value              |
+| 14 | Dashboard Analytics (Home)          | ✅     | KPI overview and pipeline visualization                 |
+|    | — Core KPIs aggregation              | ✅     | Lead counts, site visits, inventory, closed deals        |
+|    | — Metric cards UI                    | ✅     | Responsive grid of high-level performance indicators     |
+|    | — Pipeline conversion chart          | ✅     | Bar chart visualizing the sales funnel                  |
 | 15 | Interaction Timelines & History    | ✅     | Chronological log of calls, visits, and messages        |
 |    | — Activity feed UI                   | ✅     | Visual vertical timeline with status icons               |
 |    | — Manual note logging                | ✅     | Quick form to log manual entries and notes               |
