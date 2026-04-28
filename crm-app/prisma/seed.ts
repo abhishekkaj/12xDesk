@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -10,6 +11,19 @@ async function main() {
   await prisma.interaction.deleteMany();
   await prisma.lead.deleteMany();
   await prisma.property.deleteMany();
+  await prisma.user.deleteMany();
+
+  // ─── Users ───────────────────────────────────────────────────
+  const hashedPassword = await bcrypt.hash("password123", 10);
+  const admin = await prisma.user.create({
+    data: {
+      name: "Abhishek Jha",
+      email: "admin@12xdesk.com",
+      password: hashedPassword,
+    },
+  });
+
+  console.log(`✅ Created admin user: ${admin.email}`);
 
   // ─── Properties ──────────────────────────────────────────────
   const properties = await Promise.all([

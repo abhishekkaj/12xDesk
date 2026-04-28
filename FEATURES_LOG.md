@@ -67,7 +67,10 @@
 |    | — API Key protection                 | ✅     | Header-based authorization check                         |
 |    | — Payload validation                 | ✅     | Ensure name and phone are present                        |
 |    | — Prisma database sync               | ✅     | Instant lead creation in SQLite                          |
-| 13 | Authentication                       | ⬜     | Phone OTP or simple login                                |
+| 13 | Authentication (The Bouncer)         | ✅     | Secure application with NextAuth.js                     |
+|    | — NextAuth & Prisma adapter          | ✅     | Standard auth models and provider config                 |
+|    | — Middleware route protection        | ✅     | Lock down leads, inventory, and pipeline                 |
+|    | — Custom premium login UI            | ✅     | 12xDesk branded secure sign-in screen                   |
 | 14 | Dashboard Analytics (Home)          | ✅     | KPI overview and pipeline visualization                 |
 |    | — Core KPIs aggregation              | ✅     | Lead counts, site visits, inventory, closed deals        |
 |    | — Metric cards UI                    | ✅     | Responsive grid of high-level performance indicators     |

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import { DesktopSidebar, MobileBottomNav } from "@/components/layout/sidebar";
+import { AuthProvider } from "@/components/auth/auth-provider";
+import { NavigationWrapper } from "@/components/layout/navigation-wrapper";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,22 +43,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full dark`}>
-      <body className="min-h-full bg-background text-foreground antialiased">
-        <TooltipProvider delay={300}>
-          {/* Desktop Sidebar */}
-          <DesktopSidebar />
-
-          {/* Main Content Area */}
-          <main className="lg:ml-[240px] min-h-screen pb-20 lg:pb-0">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
+      <body className="min-h-full bg-background text-foreground antialiased font-sans">
+        <AuthProvider>
+          <TooltipProvider delay={300}>
+            <NavigationWrapper>
               {children}
-            </div>
-          </main>
-
-          {/* Mobile Bottom Navigation */}
-          <MobileBottomNav />
-          <Toaster />
-        </TooltipProvider>
+            </NavigationWrapper>
+            <Toaster />
+          </TooltipProvider>
+        </AuthProvider>
       </body>
     </html>
   );
