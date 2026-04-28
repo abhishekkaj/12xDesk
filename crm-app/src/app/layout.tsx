@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 import { DesktopSidebar, MobileBottomNav } from "@/components/layout/sidebar";
 import "./globals.css";
 
@@ -54,6 +55,7 @@ export default function RootLayout({
 
           {/* Mobile Bottom Navigation */}
           <MobileBottomNav />
+          <Toaster />
         </TooltipProvider>
       </body>
     </html>

@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
 import { LeadsFilters } from "@/components/leads/leads-filters";
 import { LeadsList } from "@/components/leads/leads-list";
+import { AddLeadDrawer } from "@/components/leads/add-lead-drawer";
 import { Prisma } from "@prisma/client";
 
 export default async function LeadsPage(props: {
@@ -43,16 +44,7 @@ export default async function LeadsPage(props: {
         title="Leads Inbox"
         subtitle="All fresh inquiries in one place"
         icon={<Inbox className="w-5 h-5 text-primary" />}
-        actions={
-          <Button
-            size="sm"
-            id="add-lead-btn"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground gap-1.5 rounded-lg"
-          >
-            <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Add Lead</span>
-          </Button>
-        }
+        actions={<AddLeadDrawer />}
       />
 
       {/* Search & Filter Bar */}

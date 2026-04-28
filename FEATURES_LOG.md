@@ -36,7 +36,7 @@
 |    | — Lead cards with source badge       | ✅     | 99acres, MagicBricks, Housing.com, Walk-in, Referral     |
 |    | — Quick actions (Call, WhatsApp)      | ✅     | One-tap actions on each lead card                        |
 |    | — Search & filter                    | ✅     | By source, status, date range, budget                    |
-|    | — Add lead manually                  | ⬜     | Quick-add form (name, phone, source, requirement)        |
+|    | — Add lead manually                  | ✅     | Quick-add form (name, phone, source, requirement)        |
 | 8  | Smart Inventory Database             | ✅     | Property table with tags and filters                     |
 |    | — Property cards                     | ✅     | Type, price, location, possession, RERA badge            |
 |    | — Tag system                         | ✅     | 2BHK, Under Construction, Possession Q4 2027, Area      |

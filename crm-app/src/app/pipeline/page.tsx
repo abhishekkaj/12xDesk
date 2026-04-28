@@ -1,8 +1,8 @@
-import { KanbanSquare, Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { KanbanSquare } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { prisma } from "@/lib/prisma";
 import { KanbanBoard } from "@/components/pipeline/kanban-board";
+import { AddLeadDrawer } from "@/components/leads/add-lead-drawer";
 
 export default async function PipelinePage() {
   const leads = await prisma.lead.findMany({
@@ -24,16 +24,7 @@ export default async function PipelinePage() {
         title="Site Visit Pipeline"
         subtitle="Track leads from inquiry to closing"
         icon={<KanbanSquare className="w-5 h-5 text-primary" />}
-        actions={
-          <Button
-            size="sm"
-            id="add-to-pipeline-btn"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground gap-1.5 rounded-lg"
-          >
-            <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Add to Pipeline</span>
-          </Button>
-        }
+        actions={<AddLeadDrawer />}
       />
 
       {/* Kanban Board Area */}
