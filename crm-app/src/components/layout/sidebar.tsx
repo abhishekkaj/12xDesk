@@ -74,8 +74,8 @@ export function DesktopSidebar() {
             pathname === item.href ||
             (item.href !== "/" && pathname.startsWith(item.href));
           return (
-            <Tooltip key={item.href} delayDuration={0}>
-              <TooltipTrigger asChild>
+            <Tooltip key={item.href}>
+              <TooltipTrigger render={
                 <Link
                   href={item.href}
                   id={`nav-${item.label.toLowerCase()}`}
@@ -101,7 +101,7 @@ export function DesktopSidebar() {
                     </span>
                   )}
                 </Link>
-              </TooltipTrigger>
+              } />
               <TooltipContent side="right" className="lg:hidden">
                 {item.label}
               </TooltipContent>

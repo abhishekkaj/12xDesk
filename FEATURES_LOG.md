@@ -34,12 +34,12 @@
 | -- | ------------------------------------ | ------ | -------------------------------------------------------- |
 | 7  | Unified Leads Inbox                  | ✅     | Single dashboard for fresh inquiries from all sources    |
 |    | — Lead cards with source badge       | ✅     | 99acres, MagicBricks, Housing.com, Walk-in, Referral     |
-|    | — Quick actions (Call, WhatsApp)      | ⬜     | One-tap actions on each lead card                        |
-|    | — Search & filter                    | ⬜     | By source, status, date range, budget                    |
+|    | — Quick actions (Call, WhatsApp)      | ✅     | One-tap actions on each lead card                        |
+|    | — Search & filter                    | ✅     | By source, status, date range, budget                    |
 |    | — Add lead manually                  | ⬜     | Quick-add form (name, phone, source, requirement)        |
-| 8  | Smart Inventory Database             | ⬜     | Property table with tags and filters                     |
-|    | — Property cards                     | ⬜     | Type, price, location, possession, RERA badge            |
-|    | — Tag system                         | ⬜     | 2BHK, Under Construction, Possession Q4 2027, Area      |
+| 8  | Smart Inventory Database             | ✅     | Property table with tags and filters                     |
+|    | — Property cards                     | ✅     | Type, price, location, possession, RERA badge            |
+|    | — Tag system                         | ✅     | 2BHK, Under Construction, Possession Q4 2027, Area      |
 |    | — Add/Edit property                  | ⬜     | Form with all Property model fields                      |
 |    | — Search & filter                    | ⬜     | By type, price range, location, status                   |
 | 9  | Site Visit Pipeline (Kanban)         | ✅     | Full drag-and-drop Kanban board                          |
@@ -50,10 +50,10 @@
 |    | — Column: Token/Negotiation          | ✅     | Hardcoded column                                         |
 |    | — Column: Closed                     | ✅     | Hardcoded column                                         |
 |    | — Drag-and-drop lead cards           | ✅     | Move leads between stages                                |
-| 10 | WhatsApp Brochure Engine             | ⬜     | Select property → auto-generate message → WhatsApp link  |
-|    | — Property selector                  | ⬜     | Dropdown/search to pick a property                       |
-|    | — Message template builder           | ⬜     | Auto-fill project name, price, location, possession      |
-|    | — WhatsApp Web link generator        | ⬜     | `https://wa.me/?text=...` with encoded message           |
+| 10 | WhatsApp Brochure Engine             | ✅     | Select property → auto-generate message → WhatsApp link  |
+|    | — Property selector                  | ✅     | Dropdown/search to pick a property                       |
+|    | — Message template builder           | ✅     | Auto-fill project name, price, location, possession      |
+|    | — WhatsApp Web link generator        | ✅     | `https://wa.me/?text=...` with encoded message           |
 |    | — PDF/Brochure attachment            | ⬜     | Link to brochure URL in message                          |
 
 ---
@@ -63,11 +63,18 @@
 | #  | Feature                              | Status | Notes                                                    |
 | -- | ------------------------------------ | ------ | -------------------------------------------------------- |
 | 11 | Database setup (SQLite + Prisma)     | ✅     | Schema, migrations, seed data                            |
-| 12 | API routes (CRUD)                    | ⬜     | Leads, Properties, Interactions                          |
+| 12 | Automated Lead Ingestion (Webhook)  | ✅     | API endpoint to ingest leads from external sources      |
+|    | — API Key protection                 | ✅     | Header-based authorization check                         |
+|    | — Payload validation                 | ✅     | Ensure name and phone are present                        |
+|    | — Prisma database sync               | ✅     | Instant lead creation in SQLite                          |
 | 13 | Authentication                       | ⬜     | Phone OTP or simple login                                |
 | 14 | Dashboard analytics                  | ⬜     | Lead count, conversion rate, pipeline value              |
 | 15 | Interaction timeline                 | ⬜     | Per-lead activity log (calls, visits, WhatsApp)          |
-| 16 | Bulk WhatsApp broadcast              | ⬜     | Send to multiple leads at once                           |
+| 16 | Smart Broadcast Queue              | ✅     | Sequential WhatsApp dispatcher for filtered leads        |
+|    | — Bulk selection logic               | ✅     | Select multiple leads from the inbox                     |
+|    | — Sequential dispatcher UI           | ✅     | Modal to iterate through leads and send messages         |
+|    | — Message templates                  | ✅     | Pre-fill message for the entire selection                |
+|    | — Progress tracking                  | ✅     | See which leads are sent/pending in the queue            |
 | 17 | Follow-up reminders                  | ⬜     | Push notifications / calendar integration                |
 | 18 | Multi-user support                   | ⬜     | Team leads assigning leads to agents                     |
 | 19 | CSV import/export                    | ⬜     | Bulk data migration                                      |
