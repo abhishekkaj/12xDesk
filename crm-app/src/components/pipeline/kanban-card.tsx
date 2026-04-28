@@ -2,7 +2,8 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GripVertical, IndianRupee } from "lucide-react";
+import { GripVertical, IndianRupee, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { Lead } from "./kanban-board";
 
 interface KanbanCardProps {
@@ -54,9 +55,14 @@ export function KanbanCard({ lead, isOverlay }: KanbanCardProps) {
       <CardContent className="p-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium leading-none truncate mb-1">
+            <Link 
+              href={`/leads/${lead.id}`} 
+              className="text-sm font-medium leading-none truncate mb-1 hover:text-primary hover:underline transition-colors flex items-center gap-1 group/link pointer-events-auto"
+              onPointerDown={(e) => e.stopPropagation()}
+            >
               {lead.name}
-            </p>
+              <ExternalLink className="w-2.5 h-2.5 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+            </Link>
             {lead.requirement && (
               <p className="text-xs text-muted-foreground truncate mb-2">
                 {lead.requirement}

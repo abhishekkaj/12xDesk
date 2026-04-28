@@ -69,7 +69,10 @@
 |    | — Prisma database sync               | ✅     | Instant lead creation in SQLite                          |
 | 13 | Authentication                       | ⬜     | Phone OTP or simple login                                |
 | 14 | Dashboard analytics                  | ⬜     | Lead count, conversion rate, pipeline value              |
-| 15 | Interaction timeline                 | ⬜     | Per-lead activity log (calls, visits, WhatsApp)          |
+| 15 | Interaction Timelines & History    | ✅     | Chronological log of calls, visits, and messages        |
+|    | — Activity feed UI                   | ✅     | Visual vertical timeline with status icons               |
+|    | — Manual note logging                | ✅     | Quick form to log manual entries and notes               |
+|    | — Automated event hooks              | ✅     | Auto-log stage changes and WhatsApp broadcasts          |
 | 16 | Smart Broadcast Queue              | ✅     | Sequential WhatsApp dispatcher for filtered leads        |
 |    | — Bulk selection logic               | ✅     | Select multiple leads from the inbox                     |
 |    | — Sequential dispatcher UI           | ✅     | Modal to iterate through leads and send messages         |

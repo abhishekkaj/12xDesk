@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Phone, MessageSquare, Calendar, CheckSquare, MessageSquareShare, Send, X, ExternalLink, Loader2, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +17,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { logInteraction } from "@/actions/lead-actions";
+import { toast } from "sonner";
 
 type Lead = {
   id: string;
@@ -84,6 +87,9 @@ export function LeadsList({ leads }: { leads: Lead[] }) {
     
     window.open(url, '_blank');
     
+    // Log the interaction
+    logInteraction(currentLead.id, "WHATSAPP", broadcastMessage);
+    
     setSentIds(prev => [...prev, currentLead.id]);
     
     if (!isLastLead) {
@@ -120,7 +126,9 @@ export function LeadsList({ leads }: { leads: Lead[] }) {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                  <h3 className="text-base font-semibold truncate group-hover:text-primary transition-colors">{lead.name}</h3>
+                  <Link href={`/leads/${lead.id}`} className="hover:underline">
+                    <h3 className="text-base font-semibold truncate group-hover:text-primary transition-colors">{lead.name}</h3>
+                  </Link>
                   <Badge variant="outline" className={`text-[10px] px-2 py-0 uppercase tracking-wider font-semibold border ${getStageColor(lead.pipelineStage)}`}>
                     {getStageLabel(lead.pipelineStage)}
                   </Badge>
