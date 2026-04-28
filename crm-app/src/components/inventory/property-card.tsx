@@ -5,6 +5,7 @@ import { Building2, MessageSquare, IndianRupee, MapPin, Calendar, ExternalLink }
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { PropertyActions } from "./property-actions";
 import {
   Dialog,
   DialogContent,
@@ -52,8 +53,11 @@ export function PropertyCard({ property }: { property: Property }) {
             <h3 className="font-semibold text-lg line-clamp-1">{property.projectName}</h3>
             <p className="text-sm text-muted-foreground">{property.developer}</p>
           </div>
-          <div className="bg-primary/10 p-2 rounded-lg shrink-0">
-            <Building2 className="w-5 h-5 text-primary" />
+          <div className="flex items-start gap-2">
+            <PropertyActions property={property} />
+            <div className="bg-primary/10 p-2 rounded-lg shrink-0">
+              <Building2 className="w-5 h-5 text-primary" />
+            </div>
           </div>
         </div>
 

@@ -40,7 +40,7 @@
 | 8  | Smart Inventory Database             | ✅     | Property table with tags and filters                     |
 |    | — Property cards                     | ✅     | Type, price, location, possession, RERA badge            |
 |    | — Tag system                         | ✅     | 2BHK, Under Construction, Possession Q4 2027, Area      |
-|    | — Add/Edit property                  | ⬜     | Form with all Property model fields                      |
+|    | — Add/Edit property                  | ✅     | Form with all Property model fields                      |
 |    | — Search & filter                    | ⬜     | By type, price range, location, status                   |
 | 9  | Site Visit Pipeline (Kanban)         | ✅     | Full drag-and-drop Kanban board                          |
 |    | — Column: New Lead                   | ✅     | Hardcoded column                                         |
