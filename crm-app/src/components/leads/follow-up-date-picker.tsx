@@ -67,7 +67,7 @@ export function FollowUpDatePicker({ leadId, currentDate }: FollowUpDatePickerPr
         )}
         {date ? format(date, "PPP") : <span>Set Follow-up Date</span>}
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 glass-card border-border/50" align="start">
+      <PopoverContent className="w-auto p-0 bg-[#0a0a0f] border border-border/50 shadow-xl z-50" align="start">
         <Calendar
           mode="single"
           selected={date}
