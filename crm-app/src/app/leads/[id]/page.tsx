@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { LeadTimeline } from "@/components/leads/lead-timeline";
+import { FollowUpDatePicker } from "@/components/leads/follow-up-date-picker";
 
 function getStageColor(stage: string) {
   switch (stage) {
@@ -86,6 +87,16 @@ export default async function LeadProfilePage(props: { params: Promise<{ id: str
                     <MessageSquare className="w-4 h-4" />
                     WA
                   </Button>
+                </div>
+                
+                <div className="w-full pt-2">
+                  <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2 text-left">
+                    Next Follow-up
+                  </p>
+                  <FollowUpDatePicker 
+                    leadId={lead.id} 
+                    currentDate={lead.nextFollowUp} 
+                  />
                 </div>
               </div>
 

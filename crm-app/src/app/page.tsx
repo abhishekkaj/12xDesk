@@ -12,6 +12,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PipelineChart } from "@/components/dashboard/pipeline-chart";
+import { Button } from "@/components/ui/button";
 
 export default async function HomePage() {
   // 1. Fetch Aggregated Data
@@ -20,7 +21,8 @@ export default async function HomePage() {
     siteVisitsCount,
     inventoryCount,
     closedWonCount,
-    leadsByStage
+    leadsByStage,
+    actionItems
   ] = await Promise.all([
     // Active Leads (Exclude CLOSED_WON and CLOSED_LOST)
     prisma.lead.count({
@@ -50,6 +52,21 @@ export default async function HomePage() {
       _count: {
         id: true
       }
+    }),
+    // Action Items (Overdue or Today)
+    prisma.lead.findMany({
+      where: {
+        nextFollowUp: {
+          lt: new Date(new Date().setHours(23, 59, 59, 999)),
+        },
+        pipelineStage: {
+          notIn: ["CLOSED_WON", "CLOSED_LOST"],
+        },
+      },
+      orderBy: {
+        nextFollowUp: "asc",
+      },
+      take: 5,
     })
   ]);
 
@@ -151,6 +168,50 @@ export default async function HomePage() {
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      {/* Today's Action Items (Hit List) */}
+      <div>
+        <h2 className="text-sm font-bold flex items-center gap-2 uppercase tracking-wider mb-4">
+          <CalendarCheck className="w-4 h-4 text-primary" />
+          Today&apos;s Action Items
+        </h2>
+        {actionItems.length === 0 ? (
+          <Card className="glass-card border-border/50 bg-muted/10">
+            <CardContent className="p-6 text-center">
+              <p className="text-sm text-muted-foreground">You have no pending follow-ups for today. Great job!</p>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {actionItems.map(item => (
+              <Card key={item.id} className="glass-card border-border/50 hover:border-primary/30 transition-colors">
+                <CardContent className="p-4 flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="font-bold text-sm truncate">{item.name}</h3>
+                    <p className="text-xs text-muted-foreground mt-1 truncate">
+                      {item.requirement || "No specific requirement"}
+                    </p>
+                  </div>
+                  <div className="flex gap-2 mt-4 pt-4 border-t border-border/50">
+                    <Link href={`/leads/${item.id}`} className="flex-1">
+                      <Button variant="outline" size="sm" className="w-full h-8 text-[10px] gap-1.5">
+                        <Users className="w-3 h-3" />
+                        Profile
+                      </Button>
+                    </Link>
+                    <Link href={`https://wa.me/${item.phone.replace(/[^0-9]/g, "")}`} target="_blank" className="flex-1">
+                      <Button variant="outline" size="sm" className="w-full h-8 text-[10px] gap-1.5 border-whatsapp/20 text-whatsapp bg-whatsapp/5 hover:bg-whatsapp/10">
+                        <MessageSquareShare className="w-3 h-3" />
+                        WhatsApp
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

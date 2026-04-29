@@ -84,7 +84,10 @@
 |    | — Sequential dispatcher UI           | ✅     | Modal to iterate through leads and send messages         |
 |    | — Message templates                  | ✅     | Pre-fill message for the entire selection                |
 |    | — Progress tracking                  | ✅     | See which leads are sent/pending in the queue            |
-| 17 | Follow-up reminders                  | ⬜     | Push notifications / calendar integration                |
+| 17 | Follow-up reminders                  | ✅     | Push notifications / calendar integration                |
+|    | — Schema update for follow-ups       | ✅     | Add next_followup_date to Lead model                     |
+|    | — Date picker UI on Profile          | ✅     | Select follow-up date with Shadcn Calendar               |
+|    | — Dashboard 'Hit List'               | ✅     | Show overdue and today's action items                    |
 | 18 | Multi-user support                   | ⬜     | Team leads assigning leads to agents                     |
 | 19 | CSV import/export                    | ✅     | Bulk data migration                                      |
 |    | — Papaparse & FileSaver integration  | ✅     | Fast client-side CSV parsing and downloading             |

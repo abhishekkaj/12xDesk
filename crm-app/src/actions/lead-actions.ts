@@ -113,3 +113,28 @@ export async function bulkImportLeads(leads: any[]) {
     return { success: false, error: "Failed to process bulk import" };
   }
 }
+
+export async function setFollowUpDate(leadId: string, date: Date | null) {
+  try {
+    await prisma.lead.update({
+      where: { id: leadId },
+      data: { nextFollowUp: date },
+    });
+
+    if (date) {
+      // Optional: Auto-log an interaction stating follow-up was scheduled
+      await logInteraction(
+        leadId,
+        "NOTE",
+        `Scheduled follow-up for ${date.toLocaleDateString()}`
+      );
+    }
+
+    revalidatePath("/dashboard");
+    revalidatePath(`/leads/${leadId}`);
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to set follow-up date:", error);
+    return { success: false, error: "Failed to set follow-up date" };
+  }
+}
