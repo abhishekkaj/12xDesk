@@ -32,6 +32,7 @@ export default function LoginPage() {
         email,
         password,
         redirect: false,
+        callbackUrl: "/",
       });
 
       if (result?.error) {
@@ -42,7 +43,7 @@ export default function LoginPage() {
         toast.success("Welcome back!", {
           description: "Logging you into 12xDesk...",
         });
-        router.push("/");
+        router.push(result?.url || "/");
         router.refresh();
       }
     } catch (error) {
