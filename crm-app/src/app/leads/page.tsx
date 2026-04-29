@@ -7,6 +7,8 @@ import { prisma } from "@/lib/prisma";
 import { LeadsFilters } from "@/components/leads/leads-filters";
 import { LeadsList } from "@/components/leads/leads-list";
 import { AddLeadDrawer } from "@/components/leads/add-lead-drawer";
+import { ImportCsvModal } from "@/components/leads/import-csv-modal";
+import { ExportLeadsButton } from "@/components/leads/export-button";
 import { Prisma } from "@prisma/client";
 
 export default async function LeadsPage(props: {
@@ -44,13 +46,23 @@ export default async function LeadsPage(props: {
         title="Leads Inbox"
         subtitle="All fresh inquiries in one place"
         icon={<Inbox className="w-5 h-5 text-primary" />}
-        actions={<AddLeadDrawer />}
+        actions={
+          <div className="flex items-center gap-2">
+            <ImportCsvModal />
+            <AddLeadDrawer />
+          </div>
+        }
       />
 
       {/* Search & Filter Bar */}
       <Card className="glass-card border-border/50 shadow-sm">
         <CardContent className="p-4">
-          <LeadsFilters />
+          <div className="flex flex-col gap-4">
+            <LeadsFilters />
+            <div className="flex justify-end">
+              <ExportLeadsButton leads={leads} />
+            </div>
+          </div>
         </CardContent>
       </Card>
 

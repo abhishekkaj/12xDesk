@@ -82,3 +82,34 @@ export async function createNewLead(formData: FormData) {
     return { success: false, error: "Failed to create lead" };
   }
 }
+
+export async function bulkImportLeads(leads: any[]) {
+  try {
+    const validLeads = leads
+      .filter((lead) => lead.name && lead.phone) // Ensure required fields exist
+      .map((lead) => ({
+        name: String(lead.name).trim(),
+        phone: String(lead.phone).trim(),
+        source: lead.source ? String(lead.source).trim() : "CSV Import",
+        requirement: lead.requirement ? String(lead.requirement).trim() : null,
+        budget: lead.budget ? String(lead.budget).trim() : null,
+        pipelineStage: "NEW_LEAD",
+      }));
+
+    if (validLeads.length === 0) {
+      return { success: false, error: "No valid leads found in the import." };
+    }
+
+    const result = await prisma.lead.createMany({
+      data: validLeads,
+    });
+
+    revalidatePath("/leads");
+    revalidatePath("/pipeline");
+    
+    return { success: true, count: result.count };
+  } catch (error) {
+    console.error("Bulk import failed:", error);
+    return { success: false, error: "Failed to process bulk import" };
+  }
+}

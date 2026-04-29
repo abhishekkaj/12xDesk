@@ -86,7 +86,11 @@
 |    | — Progress tracking                  | ✅     | See which leads are sent/pending in the queue            |
 | 17 | Follow-up reminders                  | ⬜     | Push notifications / calendar integration                |
 | 18 | Multi-user support                   | ⬜     | Team leads assigning leads to agents                     |
-| 19 | CSV import/export                    | ⬜     | Bulk data migration                                      |
+| 19 | CSV import/export                    | ✅     | Bulk data migration                                      |
+|    | — Papaparse & FileSaver integration  | ✅     | Fast client-side CSV parsing and downloading             |
+|    | — Import Modal UI                    | ✅     | Drag-and-drop zone with sample template                  |
+|    | — Bulk import Server Action          | ✅     | Prisma createMany batch insertion                        |
+|    | — Export functionality               | ✅     | Download filtered leads as CSV                           |
 | 20 | PWA support                          | ⬜     | Installable on mobile home screen                        |
 
 ---
